@@ -1,77 +1,60 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="description" content="FocalGaussian: Text-Driven 3D Human Generation
-        with Focal Paradigm">
-  <meta name="keywords" content="3D Gaussian, Diffusion Model">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FocalGaussian: Text-Driven 3D Human Generation
-    with Focal Paradigm</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="FocalGaussian: Text-Driven 3D Human Generation with Focal Paradigm">
+    <meta name="keywords" content="3D Gaussian, Diffusion Model">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocalGaussian: Text-Driven 3D Human Generation with Focal Paradigm</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <!-- MathJax script for LaTeX -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
-
 <body>
-
-
-
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">FocalGaussian: Text-Driven 3D Human Generation
-              with Focal Paradigm</h1>
-            <div class="is-size-5 publication-authors">
-
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">FocalGaussian: Text-Driven 3D Human Generation with Focal Paradigm</h1>
+                    </div>
+                </div>
             </div>
-
-            <div class="is-size-5 publication-authors">
-              <!-- <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span> -->
-            </div>
-
-
-          </div>
         </div>
-      </div>
-    </div>
-    </div>
-  </section>
-
+    </section>
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
+        <h2 class="subtitle has-text-centered">
+          <span class=FocalGaussian></span> Our FocalGaussian generates high fidelity and 3D-consistent human models with delicate human
+          parts like hands from text prompts. </span>
+        </h2>
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="static/myvideos/vis2_humangau.mp4" type="video/mp4">
+        </video>
         <video id="teaser" autoplay muted loop playsinline height="100%">
           <source src="static/myvideos/vis1_ours.mp4" type="video/mp4">
         </video>
-        <h2 class="subtitle has-text-centered">
-          <span class=FocalGaussian></span> generates high fidelity and 3D-consistent human models with delicate human
-          parts like hands from text prompts. </span>
-        </h2>
       </div>
     </div>
   </section>
@@ -180,6 +163,27 @@
     </div>
   </section>
 
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Comparison Visual Results</h2>
+          <!-- Image and Text within the same column wrapper -->
+          <figure class="image">
+            <img src="static/myvideos/comparison_v4_00.png"
+              alt="Overview of the FocalGaussian process showing how a 3D avatar is created from a text prompt"
+              style="width:100%; height:auto;">
+          </figure>
+          <div class="content has-text-justified">
+            <p>
+              Comparisons with general Text-to-3D and 3D Human Models. Our FocalGaussian generates 3D human with realistic human body parts and 3D consistency. Note that the blurry and unrealistic results are highlighted with green rectangles; the Janus problem are highlighted with orange arrows.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="section">
     <div class="container is-max-desktop">
