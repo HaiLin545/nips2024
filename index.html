@@ -1,20 +1,257 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text2-3D-Human</title>
-    <style>
-        h1 {
-            text-align: center;
-            color: blue;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="FocalGaussian: Text-Driven 3D Human Generation
+        with Focal Paradigm">
+  <meta name="keywords" content="3D Gaussian, Diffusion Model">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FocalGaussian: Text-Driven 3D Human Generation
+    with Focal Paradigm</title>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
 <body>
-    <h1>Text2-3D-Human</h1>
-    <div></div>
-</body>
 
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">FocalGaussian: Text-Driven 3D Human Generation
+            with Focal Paradigm</h1>
+          <div class="is-size-5 publication-authors">
+            
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <!-- <span class="author-block"><sup>1</sup>University of Washington,</span>
+            <span class="author-block"><sup>2</sup>Google Research</span> -->
+          </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="static/myvideos/vis1_ours.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class=FocalGaussian generates high fidelity and 3D-consistent human models with delicate human parts like hands from text prompts. 
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Text-driven 3D human generation significantly reduces manual labor for professionals and enables non-professionals to create 3D assets, facilitating applications across various fields, such as digital games, advertising, and films. 
+          </p>
+          <p>
+            Conventional methods usually follow the paradigm of optimizing 3D representations such as neural radiance field and 3D Gaussian by distilling a diffusion model. However, existing methods struggle to generate delicate human body parts and usually suffer from the Janus (multi-face) problem, primarily due to the ignorance of imposing stable local topology control and precise viewpoint control. 
+          </p>
+          <p>
+            Our key idea is to focus on the critical components of the human body parts to impose a more precise control while optimizing the 3D model. Following this, we propose FocalGaussian. Specifically, to eliminate the local blurry problem, we propose a focal depth loss that recovers delicate human body parts by aligning the depth of local body parts in the 3D human model and SMPL-X. Moreover, to address the Janus problem, we propose a focal view-dependent prompt that emphasizes and imposes view direction control on the keywords of local body parts. 
+          </p>
+            <p>Extensive experiments demonstrate the superiority of our FocalGaussian across a variety of prompts. Critically, our generated 3D humans accurately capture complex features of human body parts, particularly the hands.</p> 
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+    <!-- <img src="static/myvideos/overview.png" alt="Descriptive text about the image" style="width:100%; height:auto;"> -->
+
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths" style="max-width: 80%; margin: auto;"> <!-- Explicit width control -->
+        
+        <h2 class="title is-3">Motivation</h2>
+        
+        <figure class="image" style="width: 100%;"> <!-- Explicit width for image container -->
+          <img src="static/myvideos/motivation.png" alt="An overview of the FocalGaussian process, depicting the creation of a realistic 3D avatar from a text prompt" style="width: 100%; height: auto;">
+        </figure>
+        
+        <div class="content has-text-justified" style="width: 100%;"> <!-- Explicit width for text container -->
+          <p>
+            Motivation of our proposed FocalGaussian. (a) T2I models struggle to synthesize delicate
+            body parts like hands. (b) Employing prompt weighting on keywords helps match the generated
+            content and text prompt. (c) Adding view direction while generating local body parts provides a more
+            precise view control. \( \mathcal{T} \) is the text prompt "a Joker" in this case.
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <!-- Image and Text within the same column wrapper -->
+        <figure class="image">
+          <img src="static/myvideos/overview.png" alt="Overview of the FocalGaussian process showing how a 3D avatar is created from a text prompt" style="width:100%; height:auto;">
+        </figure>
+        <div class="content has-text-justified">
+          <p>
+            Overview of our FocalGaussian. Given a text prompt \( \mathcal{T} \), we create a realistic 3D avatar with
+            delicate body parts like hands and face that matches \( \mathcal{T} \). The key idea of FocalGaussian is to focus on
+            the key components of the human body. We first initialize a 3D Gaussian Splatting (3DGS) model
+            with a SMPL-X model. During training, to recover delicate human parts, we design focal depth loss
+            (c.f. Sec. 3.1) to align the visible hand depth of SMPL-X and 3DGS. Moreover, to address the Janus
+            (multi-face) problem, we design a focal view-dependent prompt Score Distillation Sampling loss
+            (c.f. Sec. 3.2) that uses our designed prompts \( \mathcal{T}_{LV} \) to up-weight the keywords of body parts and to
+            impose finer view control on a fixed diffusion model. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns">
+      <!-- First Column for Video and Content -->
+      <div class="column">
+        <div class="content has-text-centered">
+          <h2 class="title is-3">Ablation Studies</h2>
+          <video id="dollyzoom1" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+            <source src="static/myvideos/output_ablation2.mp4" type="video/mp4">
+          </video>
+          <img src="static/myvideos/ablation_sub_figure.png" alt="Descriptive text about the image" style="width:100%; height:auto;">
+          <p>
+            Our proposed Focal view-dependent SDS mitigates the Janus problem (Row 2:~(a) vs (b)) while the focal depth loss recovers plausible hands ((b) vs (c)).
+          </p>
+        </div>
+      </div>
+
+      <!-- Second Column for Video and Content -->
+      <div class="column">
+        <div class="content has-text-centered">
+          <h2 class="title is-3">Ablation Studies</h2>
+          <video id="dollyzoom2" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+            <source src="static/myvideos/output_ablation3.mp4" type="video/mp4">
+          </video>
+          <img src="static/myvideos/ablation_sub_figure.png" alt="Descriptive text about the image" style="width:100%; height:auto;">
+          <p>
+            Our proposed Focal view-dependent SDS mitigates the Janus problem (Row 2:~(a) vs (b)) while the focal depth loss recovers plausible hands ((b) vs (c)).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Re-rendering. -->
+    <h3 class="title is-4 has-text-centered">Effects of Focal Depth Loss</h3>
+    <div class="content has-text-justified">
+    </div>
+    <div class="content has-text-centered">
+      <video id="replay-video" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+        <source src="static/myvideos/lambda1_focaldepthloss.mp4" type="video/mp4">
+      </video>
+      <img src="static/myvideos/lossratio.png" alt="Graph showing the effects of different loss ratios on hand recovery clarity" style="width:100%; height:auto;">
+      <p>
+        We adjust the loss ratio \( \lambda_1 \) of the focal depth loss to show its effectiveness on recovering hands. We gradually increase the loss ratio from 0.5 to 50000, shown from left to right. The model trained with \( \lambda_1 \leq 50 \) fails to recover the hands with clear fingers, while the model trained with \( \lambda_1 \geq 500.0 \) successfully recovers the hands.
+      </p>
+    </div>
+    <!--/ Re-rendering. -->
+  </div>
+</section>
+
+
+
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered"> -->
+    
+    <!-- </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is borrowed from the <a
+            href="https://github.com/nerfies/nerfies.github.io">source code</a> of Nerfies under the license of  a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
 </html>
